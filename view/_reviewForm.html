@@ -1,0 +1,88 @@
+<form class="form-horizontal panel panel-default" name="reviewForm" ng-disabled="isSaving" ng-submit="reviewSubmit()" ng-controller="submitReviewForm" novalidate>
+
+	<div class="panel-heading"><h3 class="panel-title">Write a review</h3></div>
+
+	<div class="panel-body" ng-hide="review">
+
+		<!-- Display name / author -->
+		<div class="form-group" ng-class="{ 'has-error' : reviewForm.author.$invalid && reviewForm.author.$dirty }">
+			<label for="authorId" class="col-sm-2 control-label">Name *</label>
+			<div class="col-lg-6 col-md-7 col-sm-10">
+				<input type="text" name="author" id="author" class="form-control" ng-model="param.author" placeholder="Enter a display name" minlength="3" required>
+				<p ng-show="reviewForm.author.$invalid && reviewForm.author.$dirty" class="help-block">A display name is required (at least 3 characters long).</p>
+			</div>
+		</div>
+
+		<!-- Email address -->
+		<div class="form-group" ng-class="{ 'has-error' : reviewForm.email.$invalid && reviewForm.email.$dirty }">
+			<label for="email" class="col-sm-2 control-label">Email *</label>
+			<div class="col-lg-6 col-md-7 col-sm-10">
+				<div class="input-group">
+					<span class="input-group-addon" id="basic-addon1">@</span>
+					<input type="email" name="email" id="email" class="form-control" ng-model="param.email" placeholder="Enter your email address">
+				</div>
+				<p ng-show="reviewForm.email.$invalid && reviewForm.email.$dirty" class="help-block">Enter a valid email.</p>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="col-sm-2 control-label">Rating *</label>
+			<div class="col-lg-6 col-md-7 col-sm-10">
+				<rating class="form-control-static _product-rating" name="rating" ng-model="param.rating" max="5" required></rating>
+			</div>
+			<span class="label" ng-class="{'label-warning': percent<30, 'label-info': percent>=30 && percent<70, 'label-success': percent>=70}" ng-show="overStar && !isReadonly">{{percent}}%</span>
+			<p ng-show="reviewForm.email.$invalid && reviewForm.email.$dirty" class="help-block">Enter a valid email.</p>
+
+		</div>
+
+		<!-- Review content -->
+		<div class="form-group" ng-class="{ 'has-error' : reviewForm.comment.$invalid && reviewForm.comment.$dirty }">
+			<label for="comment" class="col-sm-2 control-label">Comment *</label>
+			<div class="col-md-9 col-sm-10">
+				<textarea class="form-control" name="comment" id="comment" ng-model="param.comment" rows="8" placeholder="Write a comment..." minlength="50" required></textarea>
+				<p ng-show="reviewForm.comment.$invalid && reviewForm.comment.$dirty" class="help-block">Please enter a valid comment.</p>
+			</div>
+		</div>
+
+
+		<!-- Review title -->
+		<div class="form-group" ng-class="{ 'has-error' : reviewForm.title.$invalid && reviewForm.title.$dirty }" ng-show="reviewForm.comment.$dirty">
+			<label for="title" class="col-sm-2 control-label">Headline</label>
+			<div class="col-lg-6 col-md-7 col-sm-10">
+				<input type="text" name="title" id="title" class="form-control" ng-model="param.title" placeholder="Headline for your review">
+				<p ng-show="reviewForm.author.$invalid && reviewForm.author.$dirty" class="help-block">Please enter a valid headline.</p>
+			</div>
+		</div>
+
+		<div class="form-group" ng-class="{ 'has-error' : reviewForm.terms.$invalid && reviewForm.terms.$dirty }">
+			<div class="col-sm-offset-2 col-sm-10 checkbox">
+				<label>
+					<input name="terms" name="terms" ng-model="param.terms" type="checkbox" required>I accept the <a href="/content/terms-and-conditions">Terms and Conditions</a> *
+				</label>
+				<p ng-show="reviewForm.terms.$invalid && reviewForm.terms.$dirty" class="help-block">Please confirm you have accepted the Terms and Conditions.</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="panel-body" ng-show="review">
+
+		<div class="clearfix">
+			<button type="button" class="btn btn-default pull-right" ng-click="review = !review"><span class="glyphicon glyphicon-pencil"></span> Edit review</button>
+			<p>Please confirm you are happy with this review. Once submitted, your review should be published within {{ review.delay }} hours.</p>
+		</div>
+		<div class="well" ng-include="'/view/_reviewItem.html'"></div>
+	</div>
+
+	<div class="panel-footer">
+		<div class="form-group">
+			<div class="col-lg-6 col-md-7 col-sm-10 col-sm-offset-2">
+				<button type="submit" class="btn btn-primary btn-block" name="action" ng-disabled="reviewForm.$invalid">
+					<span ng-bind="(review && 'Submit' || 'Preview') + ' review'"></span>
+					<span class="glyphicon glyphicon-chevron-right"></span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+</form>

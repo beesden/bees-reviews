@@ -1,0 +1,12 @@
+<!-- Top pagination -->
+<nav ng-include="'/view/_pagination.html'"></nav>
+
+<!-- Reviews list -->
+<ul class="list-unstyled _product-reviews">
+	<li ng-repeat="review in reviews">
+		<div ng-include="'/view/_reviewItem.html'"></div>
+	</li>
+</ul>
+
+<!-- Bottom pagination -->
+<nav ng-include="'/view/_pagination.html'"></nav>

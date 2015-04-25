@@ -1,0 +1,14 @@
+<!-- Product info -->
+<div class="col-xs-9 pull-right">
+	<h1 itemprop="name" ng-bind="product.Name"></h1>
+	<dl class="dl-horizontal">
+		<dt>Id: </dt>
+		<dd itemprop="productID" ng-bind="product.Id"></dd>
+		<dt ng-if="product.Brand.Name">Brand: </dt>
+		<dd ng-if="product.Brand.Name" itemprop="brand" ng-bind="product.Brand.Name"></dd>
+	</dl>
+	<p itemprop="description" ng-bind="product.Description"></p>
+</div>
+
+<!-- Product image -->
+<div class="col-xs-3"><img class="img-responsive" alt="{{ product.Name }}" ng-src="{{ product.ImageUrl }}" /></div>

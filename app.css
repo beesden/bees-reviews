@@ -1,0 +1,33 @@
+/* Search results */
+._product-list {margin-top:1em;}
+._product-list li {float:none; display:inline-block; vertical-align:top;}
+._product-list p {margin-top:1em;}
+
+/* Product star ratings */
+._product-rating {color:#FFBE00; display:inline-block; font-size:1.3em; line-height:16px; margin-right:5px;}
+.form-group ._product-rating {font-size:2.5em;}
+.form-group ._product-rating i {cursor:pointer;}
+
+/* Product rating graph */
+._product-rating-graph {width:16em}
+._product-rating-graph .pull-left {margin:3px 0 0; width:4em;}
+._product-rating-graph .progress {clear:both; margin:3px 0 0; width:10em;}
+
+/* Rating summaries */
+._product-rating-summary {vertical-align:top;}
+._product-review-summary {margin-top:1em;}
+
+/* Product review list */
+._product-reviews > li {border:dashed #ccc; border-width:0 0 1px; padding:1em 0;}
+._product-reviews > li:first-child {border-top-width:1px;}
+
+/* Product images */
+._image-thumb {display:block; height:240px; line-height:240px;}
+._image-thumb img {display:inline-block; max-height:240px; vertical-align:bottom; }
+
+/* Other */
+h1 {margin-top:0;}
+.dl-horizontal {margin-bottom:9px;}
+.dl-horizontal dt {text-align:left; width:70px;}
+.dl-horizontal dd {margin-left:70px;}
+._footer {border-top:1px dashed #ccc; font-size:0.7em; padding:2em 0; text-align:center;}

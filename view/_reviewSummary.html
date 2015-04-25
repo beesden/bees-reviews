@@ -1,0 +1,23 @@
+<ul class="list-inline _product-review-summary">
+
+	<!-- Ratings breakdown graph -->
+	<li class="_product-rating-graph">
+		<ol class="list-unstyled">
+			<li ng-repeat="value in [1, 5] | makeRange">
+				<div class="pull-right progress">
+					<div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="{{ product.RatingsGraph[6 - value].percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ product.RatingsGraph[6 - value].percent }}%;">
+						<span class="sr-only">{{ product.RatingsGraph[6 - value].percent }}% Complete</span>
+					</div>
+				</div>
+				<div class="pull-left"><span ng-bind="6 - value"></span> (<small ng-bind="product.RatingsGraph[6 - value].value || 0"></small>)</div>
+			</li>
+		</ol>
+	</li>
+
+	<!-- Ratings summary -->
+	<li class="_product-rating-summary">
+		<div ng-include="'/view/_ratingSummary.html'"></div>
+		<a ng-href="/review/{{ product.Id }}" class="btn btn-primary">Create your own review</a>
+	</li>
+
+</ul>
