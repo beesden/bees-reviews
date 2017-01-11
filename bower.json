@@ -1,0 +1,22 @@
+{
+  "name": "bees-reviews",
+  "description": "Experimental angular / bootstrap app connecting to BazaarVoice API. See:https://developer.bazaarvoice.com/docs/read/",
+  "main": "index.js",
+  "authors": [
+    "toby.marson <toby.marson@wearefriday.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/beesden/bees-reviews",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.6.1",
+    "bootstrap-css": "3.3.6",
+    "angular-route": "1.6.1"
+  }
+}
