@@ -1,0 +1,19 @@
+<!-- Pagination list -->
+<ul class="pagination" ng-if="1 < pageInfo.totalPages">
+
+	<!-- Previous page -->
+	<li ng-if="pageInfo.current != 1">
+		<a ng-click="paginate(pageInfo.current - 1)" ng-href="product/{{ product.Id }}?page={{ pageInfo.current - 1 }}"><span aria-hidden="true">&laquo;</span> Previous</a>
+	</li>
+
+	<!--Loop over pages -->
+	<li ng-repeat="pageNumber in [pageInfo.firstPage, pageInfo.lastPage] | makeRange" ng-class="{ active : pageInfo.current == pageNumber }">
+		<a ng-click="paginate(pageNumber)" ng-href="product/{{ product.Id }}?page={{ pageNumber }}" ng-bind="pageNumber"></a>
+	</li>
+
+	<!-- Next page -->
+	<li ng-if="pageInfo.current != pageInfo.totalPages">
+		<a ng-click="paginate(pageInfo.current + 1)" ng-href="product/{{ product.Id }}?page={{ pageInfo.current + 1 }}">Next <span aria-hidden="true">&raquo;</span></a>
+	</li>
+
+</ul>

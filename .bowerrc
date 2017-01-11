@@ -1,0 +1,4 @@
+{
+  "directory": "dist/vendor/",
+  "timeout": 120000
+}

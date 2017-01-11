@@ -1,0 +1,10 @@
+<!-- Product image -->
+<a class="_image-thumb" ng-href="product/{{ product.Id }}">
+	<img class="img-responsive" ng-src="{{ product.ImageUrl }}" alt="{{ product.Name }}" />
+</a>
+
+<!-- Product summary -->
+<p>
+	<a ng-href="product/{{ product.Id }}" ng-bind="product.Name"></a>
+	<div ng-include="'/templates/_ratingSummary.html'"></div>
+</p>
