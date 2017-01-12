@@ -26,7 +26,6 @@
 		 *
 		 * @param path
 		 * @param params
-		 * @param callback
 		 * @param method
 		 */
 		this.request = function(path, params, method) {
@@ -43,7 +42,6 @@
 				params: params,
 				url: $sce.trustAsResourceUrl(url)
 			}).then(function(response) {
-				console.log( response.data);
 				return response.data;
 			}, function(response) {
 				messageService.add('error', response);
