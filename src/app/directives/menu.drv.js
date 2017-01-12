@@ -42,6 +42,7 @@
 				/**
 				 * Select a category to view it's children
 				 *
+				 * @param $event
 				 * @param category
 				 */
 				scope.selectCategory = function($event, category) {

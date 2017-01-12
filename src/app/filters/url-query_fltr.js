@@ -12,7 +12,7 @@
         return function(params) {
 
             var url = $location.path();
-            serializedParams = $httpParamSerializer(params);
+            var serializedParams = $httpParamSerializer(params);
 
             if (serializedParams.length > 0) {
                 url += '?' + serializedParams;

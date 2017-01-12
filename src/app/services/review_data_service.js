@@ -32,7 +32,7 @@
 		 * @methodOf app.reviewDataService
 		 * @description Fetch a list of product results, optionally filtered by category
 		 *
-		 * @param {object} $routeParams List of query string parameters
+		 * @param {object} params List of query string parameters
 		 * @returns {$http}
 		 */
 		this.getProductListings = function(params) {
@@ -82,7 +82,7 @@
 		 * @param {boolean} confirm True for committing changes, false for previewing response
 		 * @returns {$http}
 		 */
-		this.submitProductReview = function(productId, reviewForm, confirm, callback) {
+		this.submitProductReview = function(productId, reviewForm, confirm) {
 			var params = {
 				action: confirm ? 'submit' : 'preview',
 				author: reviewForm.author.$viewValue,
