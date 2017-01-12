@@ -1,0 +1,29 @@
+<article class="product-details" itemscope="" itemtype="http://schema.org/Product">
+
+    <header class="product-details__summary" ng-repeat="(id, product) in data.product.Includes.Products">
+        <div app-product-item="product"></div>
+    </header>
+
+    <section class="product-details__ratings">
+    <div class="product-details--review-summary" ng-include="'/templates/_reviewSummary.html'"></div>
+    </section>
+
+    <section class="product-details__reviews">
+
+        <h2>Reviews</h2>
+
+        <nav app-pagination="data.product"></nav>
+
+        <ul class="review-list__items">
+            <li class="review-list__item" ng-repeat="review in data.product.Results">
+                <div app-review-item="review"></div>
+            </li>
+        </ul>
+
+        <nav app-pagination="data.product"></nav>
+
+    </section>
+
+</article>
+
+

@@ -14,15 +14,37 @@
         $locationProvider.html5Mode(true);
 
         $routeProvider
-            .when('/:id?', {
-                resolve: {
-                    productList: function($route, reviewDataService) {
-                        return reviewDataService.getProductListings($route.current.params);
-                    }
-                },
-                resolveAs: 'data',
-                templateUrl: '/templates/productList.html'
-            })
+            // Product list
+			.when('/:category?', {
+				resolve: {
+					productList: function($route, reviewDataService) {
+					    console.log($route.current.params)
+						return reviewDataService.getProductListings($route.current.params);
+					}
+				},
+				resolveAs: 'data',
+				templateUrl: '/templates/productList.html'
+			})
+			// Product details
+			.when('/:category/:product', {
+				resolve: {
+					product: function($route, reviewDataService) {
+						return reviewDataService.getProduct($route.current.params);
+					}
+				},
+				resolveAs: 'data',
+				templateUrl: '/templates/productDetails.html'
+			})
+			// Review form
+			.when('/:category/:product/review', {
+				resolve: {
+					productList: function($route, reviewDataService) {
+						return reviewDataService.getProductListings($route.current.params);
+					}
+				},
+				resolveAs: 'data',
+				templateUrl: '/templates/productList.html'
+			})
             .otherwise({redirectTo: '/'});
 
     });

@@ -8,7 +8,7 @@
     <!-- Product list -->
     <ol class="product-list__items">
         <li ng-repeat="product in data.productList.Results">
-            <div ng-include="'/templates/_productItem.html'"></div>
+            <div app-product-item="product"></div>
         </li>
     </ol>
 

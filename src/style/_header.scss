@@ -3,3 +3,6 @@
   h1 { font-size: 2rem; font-family: serif; margin: 0; }
   a { color: #fff; display: inline-block; padding: 1rem; }
 }
+.page-menu {
+  & { background: #999 }
+}

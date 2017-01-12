@@ -1,12 +1,15 @@
-<!-- Top pagination -->
-<nav ng-include="'/templates/_pagination.html'"></nav>
+<section class="review-list">
+    <!-- Top pagination -->
+    <nav app-pagination="reviews"></nav>
 
-<!-- Reviews list -->
-<ul class="list-unstyled _product-reviews">
-	<li ng-repeat="review in reviews">
-		<div ng-include="'/templates/_reviewItem.html'"></div>
-	</li>
-</ul>
+    <!-- Reviews list -->
+    <ul class="review-list__items">
+        <li class="review-list__item" ng-repeat="review in reviews.Results">
+            <div app-review-item="review"></div>
+        </li>
+    </ul>
 
-<!-- Bottom pagination -->
-<nav ng-include="'/templates/_pagination.html'"></nav>
+    <!-- Bottom pagination -->
+    <nav app-pagination="reviews"></nav>
+
+</section>

@@ -1,12 +1,16 @@
-<!-- Feedback count -->
-<p ng-if="review.TotalPositiveFeedbackCount && review.TotalFeedbackCount"><span ng-bind="review.TotalPositiveFeedbackCount"></span> of <span ng-bind="review.TotalFeedbackCount"></span> people found this review helpful.</p>
+<article class="review-item">
 
-<!-- Rating summary -->
-<rating class="_product-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" readonly="true" ng-model="review.Rating" max="5"></rating>
-<p>
-	<strong ng-bind="review.Title"></strong><br />
-	<span ng-bind="review.AuthorId"></strong></span> - <small ng-bind="review.SubmissionTime | date"></small>
-</p>
+    <h1 class="review-item__title" ng-bind="review.Title"></h1>
+    <span class="review-item__author" ng-bind="review.AuthorId"></strong></span> -
+    <span class="review-item__date" ng-bind="review.SubmissionTime | date"></span>
 
-<!-- Content -->
-<p ng-bind="review.ReviewText"></p>
+    <!-- Feedback count -->
+    <p ng-if="review.TotalPositiveFeedbackCount && review.TotalFeedbackCount"><span ng-bind="review.TotalPositiveFeedbackCount"></span> of <span ng-bind="review.TotalFeedbackCount"></span> people found this review helpful.</p>
+
+    <!-- Rating summary -->
+    <div ng-include="'/templates/_ratingSummary.html'"></div>
+
+    <!-- Content -->
+    <p ng-bind="review.ReviewText"></p>
+
+</article>

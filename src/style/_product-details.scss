@@ -1,0 +1,14 @@
+.product-details {
+
+  & { display: flex; flex-flow: row wrap; }
+
+  &__summary { @include section(); flex: 240px 0 0; margin-right: 1rem; }
+  &__ratings { @include section(); flex: 240px 1 0; }
+  &__reviews { @include section(); flex: 100% 0 0; }
+
+  @media only screen and (max-width: 545px) {
+    & { display: block; }
+    &__summary { margin-right: 0; }
+  }
+
+}
