@@ -12,7 +12,8 @@
     &--next { margin-left: 1rem; }
 
     > a { color: #7d7d7d; display: block; font-size: 1.2rem; min-width: 2.3rem; line-height: 2.5rem; padding: 0 1rem; }
-    &--active > a, & > a:hover { background: #238; color: #fff; text-decoration: none; }
+    &--active > a { background: #238; color: #fff; text-decoration: none; }
+    & > a:hover { background: #56b; color: #fff; text-decoration: none; }
   }
 
 }

@@ -7,8 +7,6 @@
 
         <section class="product-details__header__ratings">
             <p ng-bind="product.Description"></p>
-
-            <div app-review-summary="product"></div>
             <div app-review-graph="product.ReviewStatistics"></div>
 
             <a class="button button--primary" ng-href="review/{{ product.Id }}">Create your own review</a>

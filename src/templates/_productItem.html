@@ -9,7 +9,7 @@
     <div>
         <a class="product-item__title" ng-href="product/{{ product.Id }}" ng-bind="product.Name || product.Id"></a>
         <span class="product-item__secondary" ng-bind="product.Id" ng-if="product.Name"></span>
-        <div app-review-summary="product"></div>
+        <div app-review-summary="{ max: product.ReviewStatistics.OverallRatingRange, rating: product.ReviewStatistics.AverageOverallRating, total: product.ReviewStatistics.TotalReviewCount }"></div>
     </div>
 
 </article>
