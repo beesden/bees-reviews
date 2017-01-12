@@ -9,7 +9,7 @@
     <ul class="nav navbar-nav navbar-right">
         <li class="dropdown" ng-repeat="category in categories" ng-class="{open: currentCategory && currentCategory === category.Id}">
 
-            <a href="#" ng-bind="category.Name" class="dropdown-toggle" ng-click="selectCategory(category)" role="button" aria-expanded="false"></a>
+            <a href="" ng-bind="category.Name" class="dropdown-toggle" ng-click="selectCategory(category)" role="button" aria-expanded="false"></a>
 
             <ul class="dropdown-menu" role="menu">
                 <li><a ng-href="{{ category.Id }}" ng-bind="'All ' + category.Name"></a></li>

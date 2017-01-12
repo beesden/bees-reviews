@@ -1,19 +1,27 @@
-<!-- Pagination list -->
-<ul class="pagination" ng-if="1 < pageInfo.totalPages">
+<nav class="pagination">
 
-	<!-- Previous page -->
-	<li ng-if="pageInfo.current != 1">
-		<a ng-click="paginate(pageInfo.current - 1)" ng-href="product/{{ product.Id }}?page={{ pageInfo.current - 1 }}"><span aria-hidden="true">&laquo;</span> Previous</a>
-	</li>
+    <!-- Pagination list -->
+    <ul class="pagination__items">
 
-	<!--Loop over pages -->
-	<li ng-repeat="pageNumber in [pageInfo.firstPage, pageInfo.lastPage] | makeRange" ng-class="{ active : pageInfo.current == pageNumber }">
-		<a ng-click="paginate(pageNumber)" ng-href="product/{{ product.Id }}?page={{ pageNumber }}" ng-bind="pageNumber"></a>
-	</li>
+        <!-- Previous page -->
+        <li class="pagination__item pagination__item--prev">
+            <a ng-href="{{ {page: pageInfo.previous} | urlQuery }}"><span aria-hidden="true">&lsaquo;</span></a>
+        </li>
 
-	<!-- Next page -->
-	<li ng-if="pageInfo.current != pageInfo.totalPages">
-		<a ng-click="paginate(pageInfo.current + 1)" ng-href="product/{{ product.Id }}?page={{ pageInfo.current + 1 }}">Next <span aria-hidden="true">&raquo;</span></a>
-	</li>
+        <!--Loop over pages -->
+        <li class="pagination__item" ng-repeat="pageNumber in [pageInfo.firstPage, pageInfo.lastPage] | makeRange" ng-class="{ 'pagination__item--active': pageInfo.current === pageNumber }">
+            <a ng-href="{{ {page: pageNumber} | urlQuery }}" ng-bind="pageNumber"></a>
+        </li>
 
-</ul>
+        <!-- Next page -->
+        <li class="pagination__item pagination__item--next">
+            <a ng-href="{{ {page: pageInfo.next} | urlQuery }}"><span aria-hidden="true">&rsaquo;</span></a>
+        </li>
+
+    </ul>
+
+    <p class="pagination__summary" ng-if="summary">
+        Showing <strong>{{ pageInfo.start }}</strong> - <strong>{{ pageInfo.end }}</strong> of <strong>{{ pageInfo.totalResults }}</strong>
+    </p>
+
+</nav>

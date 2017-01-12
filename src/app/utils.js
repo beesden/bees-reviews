@@ -6,7 +6,7 @@
      * @ngdoc overview
      * @name app
      */
-    var app = ng.module('app', []);
+    var app = ng.module('app');
 
     /**
      * @ngdoc object
@@ -51,7 +51,7 @@
             /**
              * @ngdoc method
              * @name convertCategoryResponse
-             * @methodOf app.reviewsService
+             * @methodOf app.reviewDataService
              * @description Convert and validate the category response
              *
              * @param response - API response object
@@ -60,25 +60,12 @@
              */
             convertCategoryResponse: function(response, categoryId) {
 
-                // Get the product object
-                var content = {},
-                    categoryMap = response.Includes.Categories;
-
-                if (categoryMap && categoryId) {
-                    content.category = categoryMap[categoryId];
-                    content.title = content.category.Name;
-                }
-                content.productList = response.Results;
-                content.pageInfo = getPagination(response);
-
-                return content;
-
             },
 
             /**
              * @ngdoc method
              * @name convertProductResponse
-             * @methodOf app.reviewsService
+             * @methodOf app.reviewDataService
              * @description Convert and validate the product reviews response
              *
              * @param response - API response object

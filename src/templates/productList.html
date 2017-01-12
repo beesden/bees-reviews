@@ -1,7 +1,19 @@
-<article>
+<section class="product-list">
 
-	<h1 ng-bind="categoryList[categoryId].Name || 'All products'"></h1>
+    <header class="product-list__header">
+        <h1 ng-bind="data.productList.Name || 'All products'"></h1>
+        <nav app-pagination="data.productList" app-pagination-summary="true"></nav>
+    </header>
 
-	<div ng-include="'/templates/_productList.html'"></div>
+    <!-- Product list -->
+    <ol class="product-list__items">
+        <li ng-repeat="product in data.productList.Results">
+            <div ng-include="'/templates/_productItem.html'"></div>
+        </li>
+    </ol>
 
-</article>
+    <footer class="product-list__footer">
+        <nav app-pagination="data.productList"></nav>
+    </footer>
+
+</section>

@@ -4,16 +4,16 @@
 
     /**
      * @ngdoc service
-     * @name app:reviewsService
+     * @name app:reviewDataService
      *
      * @description - Various services which communicate with the BazaarVoice API
      */
-    ng.module('app').service('reviewsService', function(bvService) {
+    ng.module('app').service('reviewDataService', function(bvService) {
 
         /**
          * @ngdoc method
          * @name getCategoryList
-         * @methodOf app.reviewsService
+         * @methodOf app.reviewDataService
          * @description Fetch the category list for constructing the category map / hierarchy
          *
          * @returns {$http}
@@ -23,36 +23,36 @@
                 filter: "IsActive:eq:true",
                 limit: 100
             };
-            bvService.request('categories', params, callback);
+            return bvService.request('categories', params, callback);
         };
 
         /**
          * @ngdoc method
          * @name getCategoryList
-         * @methodOf app.reviewsService
+         * @methodOf app.reviewDataService
          * @description Fetch a list of product results, optionally filtered by category
          *
          * @param {object} $routeParams List of query string parameters
          * @returns {$http}
          */
-        this.getProductListings = function($routeParams, callback) {
-            var params = getPaginationParams($routeParams, 12);
+        this.getProductListings = function(params) {
+            var query = bvService.getPaginationParams(params, 12);
             // Add required parameters
-            params.filter = ['TotalReviewCount:gte:1'];
-            params.include = 'Categories';
-            params.stats = 'Reviews';
+            query.filter = ['TotalReviewCount:gte:1'];
+            query.include = 'Categories';
+            query.stats = 'Reviews';
             // Add category filter
-            if ($routeParams.id) {
-                params.filter.push('CategoryId:eq:' + $routeParams.id);
+            if (params.id) {
+                query.filter.push('CategoryId:eq:' + params.id);
             }
             // Get response
-            bvService.request('products', params, callback)
+            return bvService.request('products', query)
         };
 
         /**
          * @ngdoc method
          * @name getProduct
-         * @methodOf app.reviewsService
+         * @methodOf app.reviewDataService
          * @description Fetch a product, optionally including a list of reviews
          *
          * @param {object} $routeParams List of query string parameters
@@ -68,13 +68,13 @@
                 params.stats = 'Reviews';
             }
             // Get response
-            bvService.request('reviews', params, callback)
+            return bvService.request('reviews', params, callback)
         };
 
         /**
          * @ngdoc method
          * @name submitProductReview
-         * @methodOf app.reviewsService
+         * @methodOf app.reviewDataService
          * @description Submit a review form
          *
          * @param {string} productId Product to submit a review for
@@ -94,7 +94,7 @@
                 usernickname: reviewForm.author.$viewValue
             };
             // Post response
-            bvService.request('submitreview', params, callback, 'POST');
+            return bvService.request('submitreview', params, callback, 'POST');
         };
 
     });

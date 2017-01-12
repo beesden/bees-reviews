@@ -3,12 +3,12 @@
 (function(ng) {
 
     /**
-     * @ngdoc controller
+     * @ngdoc directive
      * @name app:mainMenu
      *
      * @description - Display all the categories in the menu.
      */
-    ng.module('app').directive('appMainNav', function($window, reviewsService) {
+    ng.module('app').directive('appMainNav', function(reviewDataService) {
 
         return {
 
@@ -18,7 +18,7 @@
             link: function(scope) {
 
                 // Add the category 'hierarchy'
-                reviewsService.getCategoryList(function(response) {
+                reviewDataService.getCategoryList().then(function(response) {
 
                     scope.categories = [];
                     var categoryMap = {};
@@ -50,6 +50,7 @@
                     } else {
                         scope.currentCategory = category.Id;
                     }
+                    return false;
                 };
 
             }

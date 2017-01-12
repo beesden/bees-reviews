@@ -12,7 +12,18 @@
     ]).config(function($locationProvider, $routeProvider) {
 
         $locationProvider.html5Mode(true);
-       $routeProvider.otherwise({redirectTo: '/'});
+
+        $routeProvider
+            .when('/:id?', {
+                resolve: {
+                    productList: function($route, reviewDataService) {
+                        return reviewDataService.getProductListings($route.current.params);
+                    }
+                },
+                resolveAs: 'data',
+                templateUrl: '/templates/productList.html'
+            })
+            .otherwise({redirectTo: '/'});
 
     });
 
