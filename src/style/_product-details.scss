@@ -1,14 +1,18 @@
 .product-details {
 
-  & { display: flex; flex-flow: row wrap; }
+  &__header {
 
-  &__summary { @include section(); flex: 240px 0 0; margin-right: 1rem; }
-  &__ratings { @include section(); flex: 240px 1 0; }
-  &__reviews { @include section(); flex: 100% 0 0; }
+    & {display: flex; }
 
-  @media only screen and (max-width: 545px) {
-    & { display: block; }
-    &__summary { margin-right: 0; }
+    &__summary { @include section(); flex: 240px 0 0; margin-right: 1rem; }
+    &__ratings { @include section(); flex-grow: 1; }
+
+    @media only screen and (max-width: 545px) {
+      & { display: block; }
+      &__summary { margin-right: 0; }
+    }
   }
+
+  &__reviews { @include section(); }
 
 }

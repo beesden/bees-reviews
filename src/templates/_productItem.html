@@ -9,7 +9,7 @@
     <div>
         <a class="product-item__title" ng-href="product/{{ product.Id }}" ng-bind="product.Name || product.Id"></a>
         <span class="product-item__secondary" ng-bind="product.Id" ng-if="product.Name"></span>
-        <div ng-include="'/templates/_ratingSummary.html'"></div>
+        <div app-review-summary="product"></div>
     </div>
 
 </article>

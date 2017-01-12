@@ -3,7 +3,7 @@
   &__items { display: flex; list-style: none; padding: 0.4rem 0 0; }
 
   &__item {
-    & { background: #fff; border-radius: 0.4rem 0.4rem 0 0; font-size: 1.2rem; margin-right: 0.5rem; }
+    & { background: #fff; border-radius: 0.4rem 0.4rem 0 0; font-size: 1.1rem; margin-right: 0.5rem; }
     > a { display: block; padding: 1rem; }
     > a:hover { text-decoration: none; }
     &--active { background: #eee; }
@@ -14,7 +14,7 @@
     &--active { display: block; }
 
     &__item > a {
-      & { display: block; font-size: 1.1rem; padding: 0.5rem 1rem; min-width: 8rem; }
+      & { display: block; font-size: 1rem; padding: 0.5rem 1rem; min-width: 8rem; }
       &:hover { background: #fafafa; text-decoration: none; }
     }
 

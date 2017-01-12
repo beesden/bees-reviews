@@ -18,7 +18,6 @@
 			.when('/:category?', {
 				resolve: {
 					productList: function($route, reviewDataService) {
-					    console.log($route.current.params)
 						return reviewDataService.getProductListings($route.current.params);
 					}
 				},
@@ -29,7 +28,7 @@
 			.when('/:category/:product', {
 				resolve: {
 					product: function($route, reviewDataService) {
-						return reviewDataService.getProduct($route.current.params);
+						return reviewDataService.getProduct($route.current.params, true);
 					}
 				},
 				resolveAs: 'data',

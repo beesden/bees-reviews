@@ -1,12 +1,19 @@
 <article class="product-details" itemscope="" itemtype="http://schema.org/Product">
 
-    <header class="product-details__summary" ng-repeat="(id, product) in data.product.Includes.Products">
-        <div app-product-item="product"></div>
-    </header>
+    <header class="product-details__header" ng-repeat="(id, product) in data.product.Includes.Products">
+        <section class="product-details__header__summary">
+            <div app-product-item="product"></div>
+        </section>
 
-    <section class="product-details__ratings">
-    <div class="product-details--review-summary" ng-include="'/templates/_reviewSummary.html'"></div>
-    </section>
+        <section class="product-details__header__ratings">
+            <p ng-bind="product.Description"></p>
+
+            <div app-review-summary="product"></div>
+            <div app-review-graph="product.ReviewStatistics"></div>
+
+            <a class="button button--primary" ng-href="review/{{ product.Id }}">Create your own review</a>
+        </section>
+    </header>
 
     <section class="product-details__reviews">
 

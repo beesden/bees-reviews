@@ -1,9 +1,0 @@
-<!-- Product rating summary -->
-<rating class="_product-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" readonly="true" ng-model="product.ReviewStatistics.AverageOverallRating" max="5" >
-	Average rating:
-	<span itemprop="ratingValue" ng-bind="product.ReviewStatistics.AverageOverallRating | number:0"></span> out of
-	<span itemprop="bestRating" ng-bind="product.ReviewStatistics.OverallRatingRange | number:0"></span> with
-	<span itemprop="ratingCount" ng-bind="product.TotalReviewCount"></span> ratings
-</rating>
-
-<p ng-bind="'(' + product.TotalReviewCount + ' customer reviews)'"></p>

@@ -1,23 +1,9 @@
-<ul class="review-summary">
+<!-- summary rating summary -->
+<rating class="_summary-rating" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating" readonly="true" ng-model="summary.ReviewStatistics.AverageOverallRating" max="5" >
+	Average rating:
+	<span itemprop="ratingValue" ng-bind="summary.ReviewStatistics.AverageOverallRating | number:0"></span> out of
+	<span itemprop="bestRating" ng-bind="summary.ReviewStatistics.OverallRatingRange | number:0"></span> with
+	<span itemprop="ratingCount" ng-bind="summary.TotalReviewCount"></span> ratings
+</rating>
 
-	<!-- Ratings breakdown graph -->
-	<li class="review-graph">
-		<ol class="list-unstyled">
-			<li ng-repeat="value in [1, 5] | makeRange">
-				<div class="pull-right progress">
-					<div role="progressbar" style="width: {{ product.RatingsGraph[6 - value].percent }}%;">
-						<span>{{ product.RatingsGraph[6 - value].percent }}% Complete</span>
-					</div>
-				</div>
-				<div class="pull-left"><span ng-bind="6 - value"></span> (<small ng-bind="product.RatingsGraph[6 - value].value || 0"></small>)</div>
-			</li>
-		</ol>
-	</li>
-
-	<!-- Ratings summary -->
-	<li class="_product-rating-summary">
-		<div ng-include="'/templates/_ratingSummary.html'"></div>
-		<a ng-href="review/{{ product.Id }}" class="btn btn-primary">Create your own review</a>
-	</li>
-
-</ul>
+<p ng-bind="'(' + summary.TotalReviewCount + ' customer reviews)'"></p>

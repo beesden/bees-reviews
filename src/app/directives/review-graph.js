@@ -14,9 +14,26 @@
 
 			restrict: 'A',
 			scope: {
-				'ratings': '=appReviewGraph'
+				'appRatings': '=appReviewGraph'
 			},
-			templateUrl: '/templates/_reviewGraph.html'
+			templateUrl: '/templates/_reviewGraph.html',
+
+			link: function(scope) {
+				scope.$watch('appRatings', function(ratings) {
+
+					if (!ratings) {
+						return;
+					}
+
+					scope.total = ratings.TotalReviewCount;
+					scope.ratings = {};
+
+					ratings.RatingDistribution.forEach(function(ratings) {
+						scope.ratings[ratings.RatingValue] = ratings.Count;
+					})
+
+				})
+			}
 
 		}
 

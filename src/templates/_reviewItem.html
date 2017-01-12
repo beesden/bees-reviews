@@ -7,8 +7,7 @@
     <!-- Feedback count -->
     <p ng-if="review.TotalPositiveFeedbackCount && review.TotalFeedbackCount"><span ng-bind="review.TotalPositiveFeedbackCount"></span> of <span ng-bind="review.TotalFeedbackCount"></span> people found this review helpful.</p>
 
-    <!-- Rating summary -->
-    <div ng-include="'/templates/_ratingSummary.html'"></div>
+    <div app-review-summary="review"></div>
 
     <!-- Content -->
     <p ng-bind="review.ReviewText"></p>
