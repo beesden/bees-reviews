@@ -9,13 +9,8 @@
             <p ng-bind="product.Description"></p>
             <div app-review-graph="product.ReviewStatistics"></div>
 
-            <a class="button button--primary" ng-click="$parent.toggleForm = !$parent.toggleForm">Create your own review</a>
+            <a class="button button--primary" ng-href="product/{{ product.Id }}/review">Create your own review</a>
         </section>
     </header>
 
-    <div app-review-list="data.product" ng-if="!toggleForm"></div>
-    <div app-review-form ng-if="toggleForm"></div>
-
 </article>
-
-

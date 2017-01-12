@@ -2,19 +2,19 @@
 
 (function(ng) {
 
-    /**
-     * @ngdoc overview
-     * @name app
-     * @description Framework for fetching ratings / reviews information.
-     */
-    ng.module('app', [
-        'ngRoute'
-    ]).config(function($locationProvider, $routeProvider) {
+	/**
+	 * @ngdoc overview
+	 * @name app
+	 * @description Framework for fetching ratings / reviews information.
+	 */
+	ng.module('app', [
+		'ngRoute'
+	]).config(function($locationProvider, $routeProvider) {
 
-        $locationProvider.html5Mode(true);
+		$locationProvider.html5Mode(true);
 
-        $routeProvider
-            // Product list
+		$routeProvider
+		// Product list
 			.when('/:category?', {
 				resolve: {
 					productList: function($route, reviewDataService) {
@@ -34,18 +34,8 @@
 				resolveAs: 'data',
 				templateUrl: '/templates/productDetails.html'
 			})
-			// Review form
-			.when('/:category/:product/review', {
-				resolve: {
-					productList: function($route, reviewDataService) {
-						return reviewDataService.getProductListings($route.current.params);
-					}
-				},
-				resolveAs: 'data',
-				templateUrl: '/templates/productList.html'
-			})
-            .otherwise({redirectTo: '/'});
+			.otherwise({redirectTo: '/'});
 
-    });
+	});
 
 })(angular);

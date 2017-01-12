@@ -1,0 +1,12 @@
+.form {
+
+  fieldset { border: none; border-bottom: 1px dashed #ddd; margin: 0 0 1rem; padding: 0 0 1rem; }
+  legend { font-size: 1.3rem; font-weight: 700; margin: 0 0 1rem; }
+
+  &__label { display: inline-block; color: #223388; font-weight: 700; margin: 0 0 0.4rem; }
+
+  &__input { border: 1px solid #ddd; display: block; font: inherit; margin: 0 0 1rem; padding: 0.5rem; width: 100%; }
+  input[type="checkbox"] { margin-right: 0.4rem; }
+
+  &__message { color: #900; font-size: 0.85rem; margin: 0.2rem 0 1rem; }
+}

@@ -82,19 +82,19 @@
 		 * @param {boolean} confirm True for committing changes, false for previewing response
 		 * @returns {$http}
 		 */
-		this.submitProductReview = function(productId, reviewForm, confirm) {
+		this.submitProductReview = function(productId, reviewForm) {
 			var params = {
-				action: confirm ? 'submit' : 'preview',
-				author: reviewForm.author.$viewValue,
+				action: reviewForm.confirm ? 'submit' : 'preview',
+				author: reviewForm.author,
 				productId: productId,
-				rating: reviewForm.rating.$viewValue,
-				reviewText: reviewForm.comment.$viewValue,
-				title: reviewForm.title.$viewValue || '',
-				userId: reviewForm.email.$viewValue,
-				usernickname: reviewForm.author.$viewValue
+				rating: reviewForm.rating || 3,
+				reviewText: reviewForm.comment,
+				title: reviewForm.title,
+				userId: reviewForm.email,
+				usernickname: reviewForm.author
 			};
 			// Post response
-			return bvService.request('submitreview', params, callback, 'POST');
+			return bvService.request('submitreview', params, 'POST');
 		};
 
 	});

@@ -1,0 +1,15 @@
+<section class="product-details__reviews">
+
+    <h2>Reviews</h2>
+
+    <nav app-pagination="reviews"></nav>
+
+    <ul class="review-list__items">
+        <li class="review-list__item" ng-repeat="review in reviews.Results">
+            <div app-review-item="review"></div>
+        </li>
+    </ul>
+
+    <nav app-pagination="reviews"></nav>
+
+</section>

@@ -1,0 +1,8 @@
+.review-form {
+
+  & { @include section(); }
+
+  &__message { font-weight: 700; }
+  &__preview { padding: 1rem; background: #f0f0f0; }
+
+}
