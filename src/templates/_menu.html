@@ -10,12 +10,6 @@
             </a>
 
             <ul class="category-nav__dropdown" role="menu" ng-if="category.children.length" ng-class="{'category-nav__dropdown--active': currentCategory && currentCategory === category.Id}">
-                <li class="category-nav__dropdown__item">
-                    <a ng-href="{{ category.Id }}" ng-bind="'All ' + category.Name"></a>
-                </li>
-
-                <li class="category-nav__dropdown__divider" role="separator"></li>
-
                 <li class="category-nav__dropdown__item" ng-repeat="child in category.children">
                     <a ng-href="{{ child.Id }}" ng-bind="child.Name"></a>
                 </li>
