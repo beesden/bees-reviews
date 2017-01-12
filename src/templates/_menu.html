@@ -1,0 +1,27 @@
+<nav class="category-nav">
+
+    <!-- Category navigation -->
+    <ul class="category-nav__items">
+        <li class="category-nav__item" ng-repeat="category in categories" ng-class="{'category-nav__item--active': currentCategory && currentCategory === category.Id}">
+
+            <a ng-href="{{ category.Id }}" class="dropdown-toggle" role="button" ng-click="selectCategory($event, category)">
+                <span ng-bind="category.Name"></span>
+                <span ng-if="category.children.length">+</span>
+            </a>
+
+            <ul class="category-nav__dropdown" role="menu" ng-if="category.children.length" ng-class="{'category-nav__dropdown--active': currentCategory && currentCategory === category.Id}">
+                <li class="category-nav__dropdown__item">
+                    <a ng-href="{{ category.Id }}" ng-bind="'All ' + category.Name"></a>
+                </li>
+
+                <li class="category-nav__dropdown__divider" role="separator"></li>
+
+                <li class="category-nav__dropdown__item" ng-repeat="child in category.children">
+                    <a ng-href="{{ child.Id }}" ng-bind="child.Name"></a>
+                </li>
+            </ul>
+
+        </li>
+    </ul>
+
+</nav>

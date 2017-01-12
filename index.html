@@ -4,40 +4,50 @@
 
 <head>
 
-	<title ng-bind="(title || 'Home') + ' | Product Reviews'"></title>
+    <title ng-bind="(title || 'Home') + ' | Product Reviews'"></title>
 
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="robots" content="index,follow" />
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
 
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-	<link rel="stylesheet" href="/app.css">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="/app.css">
 
-	<base href="/reviews/">
+    <base href="/reviews/">
 
-	<script src="/vendor/angular/angular.js"></script>
-	<script src="/vendor/angular-route/angular-route.js"></script>
-	<script src="/app.js"></script>
-	<script src="/templates.js"></script>
+    <script src="/vendor/angular/angular.js"></script>
+    <script src="/vendor/angular-route/angular-route.js"></script>
+    <script src="/app.js"></script>
+    <script src="/templates.js"></script>
 </head>
 
 <body>
 
-	<nav class="navbar navbar-default" app-main-nav role="navigation"></nav>
+<header class="page-header">
+    <div class="container">
+        <h1><a href="/">Bees-Reviews</a></h1>
+    </div>
+</header>
 
-	<main role="main">
-		<div class="container">
-			<ul ng-if="messages" ng-include="'/templates/_productSummary.html'"></ul>
-			<div ng-view>
-				<noscript><p>This website requires JavaScript to run.</p></noscript>
-			</div>
-		</div>
-	</main>
+<section class="page-menu">
+    <div class="container">
+        <nav app-main-nav role="navigation"></nav>
+    </div>
+</section>
 
-	<footer>
-		<div class="page-footer">Built by <a href="mailto:beesden@gmail.com">Beesden</a></div>
-	</footer>
+<main role="main">
+    <div class="container">
+        <ul ng-if="messages" ng-include="'/templates/_productSummary.html'"></ul>
+        <div ng-view>
+            <noscript><p>This website requires JavaScript to run.</p></noscript>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="page-footer">Built by <a href="mailto:beesden@gmail.com">Beesden</a></div>
+</footer>
 
 </body>
 

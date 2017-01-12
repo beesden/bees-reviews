@@ -1,0 +1,5 @@
+.page-header {
+  & { background: #238; border-bottom: 1px solid #fff; }
+  h1 { font-size: 2rem; font-family: serif; margin: 0; }
+  a { color: #fff; display: inline-block; padding: 1rem; }
+}
