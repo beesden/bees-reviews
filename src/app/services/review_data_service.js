@@ -83,7 +83,6 @@
 		 * @returns {$http}
 		 */
 		this.submitProductReview = function(productId, reviewForm, review) {
-			console.log(reviewForm)
 			var params = {
 				action: review ? 'preview' : 'submit',
 				author: reviewForm.author,

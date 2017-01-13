@@ -1,8 +1,8 @@
 .product-item {
 
-  &__title { font-size: 1.1rem; font-weight: 700; color: #000; display: block; min-height: 35px; }
+  &__title { display: block; font-size: 1.1rem; font-weight: 700; color: #000; min-height: 35px; margin: 0 0 0.5rem; text-overflow: ellipsis; word-break: break-word; }
 
-  &__secondary { display: block; font-size: 0.9rem; color: #999; }
+  &__secondary { display: block; font-size: 0.9rem; color: #999; margin: 0 0 0.5rem; }
 
   &__image {
     & { display: block; height: 160px; line-height: 160px; margin: 0 0 12px; text-align: center; }

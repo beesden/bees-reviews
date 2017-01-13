@@ -1,0 +1,37 @@
+<div class="form-element" data-ng-switch="input.type">
+
+    <input type="checkbox"
+            name="{{ input.name }}"
+            id="{{ input.name }}"
+            ng-model="$parent.model"
+            ng-required="input.required"
+            ng-switch-when="checkbox">
+
+    <label class="form__label" for="{{ input.name }}">
+        {{ input.label }}
+        <span class="form__label__required" ng-if="input.required">*</span>
+    </label>
+
+    <textarea class="form__input"
+            name="{{ input.name }}"
+            id="{{ input.name }}"
+            ng-model="$parent.model"
+            placeholder="{{ input.placeholder }}"
+            minlength="50"
+            ng-required="input.required"
+            ng-switch-when="textarea">
+    </textarea>
+
+    <input class="form__input"
+            type="{{ input.type || 'text' }}"
+            name="{{ input.name }}"
+            id="{{ input.name }}"
+            ng-model="$parent.model"
+            placeholder="{{ input.placeholder }}"
+            minlength="3"
+            ng-required="input.required"
+            ng-switch-default>
+
+    <p class="form__message" ng-if="formCtrl[input.name].$invalid && formCtrl[input.name].$touched" ng-bind="input.error"></p>
+
+</div>

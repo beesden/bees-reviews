@@ -11,6 +11,7 @@ var ngTemplates = require('gulp-angular-templatecache');
 
 var config = {
 	dist: 'dist',
+	images: "src/images/**/*.{png,svg}",
 	script: "src/app/**/*.js",
 	style: "src/style/**/*.scss",
 	template: "src/templates/**/*.html"
@@ -47,6 +48,16 @@ gulp.task('bower', function(cb) {
 		}
 		cb(err);
 	});
+});
+
+/**
+ * @task styles
+ *
+ * Copy image assets across
+ */
+gulp.task('images', function() {
+	return gulp.src(config.images)
+		.pipe(gulp.dest(config.dist));
 });
 
 /**
@@ -101,9 +112,20 @@ gulp.task('templates', function() {
  */
 gulp.task('watch', function() {
 	var watchConfig = {interval: 0.8};
+	gulp.watch(config.images, watchConfig, ['images']);
 	gulp.watch(config.script, watchConfig, ['scripts']);
 	gulp.watch(config.style, watchConfig, ['styles']);
 	gulp.watch(config.template, watchConfig, ['templates']);
+});
+
+
+/**
+ * @task build
+ *
+ * Rebuild the project
+ */
+gulp.task('build', function(cb) {
+	return sequence.apply(this, ['images', 'scripts', 'styles', 'templates', cb]);
 });
 
 /**
@@ -112,9 +134,5 @@ gulp.task('watch', function() {
  * Complete build the dist BB widget
  */
 gulp.task('default', ['clean'], function(cb) {
-	return sequence.apply(this, [
-		'bower',
-		['scripts', 'styles', 'templates'],
-		cb
-	]);
+	return sequence.apply(this, ['bower', 'build', cb]);
 });

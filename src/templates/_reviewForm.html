@@ -2,30 +2,67 @@
 
     <p class="review-form__message" ng-if="review">Please confirm you are happy with this review. Once submitted, your review should be published within {{ review.delay }} hours.</p>
     <p class="review-form__message review-form__message--success" ng-if="success">Your review was successfully posted. Your review should be published within {{ review.delay }} hours.</p>
-    <p class="review-form__message review-form__message--error"ng-if="error">There was an error with posting your review. Please check and try again.</p>
+    <p class="review-form__message review-form__message--error" ng-if="error">There was an error with posting your review. Please check and try again.</p>
 
     <fieldset ng-hide="success || review">
         <legend>Write a review</legend>
 
-        <label class="form__label" for="author">Name *</label>
-        <input class="form__input" type="text" name="author" id="author" ng-model="form.author" placeholder="Enter your name" minlength="3" required>
-        <p class="form__message" ng-show="reviewForm.author.$invalid && reviewForm.author.$touched">A display name is required (at least 3 characters long).</p>
+        <div ng-model="form.author" input-wrap="{
+            model: form,
+            name: 'author',
+            label: 'Name',
+            placeholder: 'Enter your name',
+            minlength: 3,
+            required: true,
+            error: 'A display name is required (at least 3 characters long).' }">
+        </div>
 
-        <label class="form__label" for="email">Email *</label>
-        <input class="form__input" type="email" name="email" id="email" ng-model="form.email" placeholder="Enter your email address" minlength="3" required>
-        <p class="form__message" ng-show="reviewForm.email.$invalid && reviewForm.email.$touched">Enter a valid email.</p>
+        <div ng-model="form.email" input-wrap="{
+            model: form,
+            name: 'email',
+            type: 'email',
+            label: 'Email',
+            placeholder: 'Enter your email address',
+            minlength: 3,
+            required: true,
+            error: 'Enter a valid email.' }">
+        </div>
 
-        <label class="form__label" for="title">Title *</label>
-        <input class="form__input" type="text" name="title" id="title" ng-model="form.title" placeholder="Headline for your review" required>
-        <p class="form__message" ng-show="reviewForm.title.$invalid && reviewForm.title.$touched">Please enter a valid headline.</p>
+        <div ng-model="form.title" input-wrap="{
+            model: form,
+            name: 'title',
+            label: 'Title',
+            placeholder: 'Review headline',
+            minlength: 3,
+            required: true,
+            error: 'Enter a headline.' }">
+        </div>
 
-        <label class="form__label" for="comment">Review *</label>
-        <textarea class="form__input" name="comment" id="comment" ng-model="form.comment" rows="8" placeholder="Write a comment..." minlength="50" required></textarea>
-        <p class="form__message" ng-show="reviewForm.comment.$invalid && reviewForm.comment.$touched">Please enter a valid comment (minimum 50 characters).</p>
+        <div class="form-element">
+            <span class="form__label">Rating *</span>
+            <rating ng-model="form.rating" editable="true" required="true"></rating>
+        </div>
 
-        <input name="terms" id="terms" ng-model="param.terms" type="checkbox" required>
-        <label for="terms"> I accept the <a href="/content/terms-and-conditions">Terms and Conditions</a> *</label>
-        <p class="form__message" ng-show="reviewForm.terms.$invalid && reviewForm.terms.$dirty">Please confirm you have accepted the Terms and Conditions.</p>
+        <div ng-model="form.comment" input-wrap="{
+            model: form,
+            name: 'comment',
+            type:'textarea',
+            label: 'Comment',
+            placeholder: 'Write a comment...',
+            minlength: 50,
+            required: true,
+            error: 'Please enter a review minimum 50 characters).' }">
+        </div>
+
+        <div ng-model="terms" input-wrap="{
+            model: form,
+            name: 'terms',
+            type:'checkbox',
+            label: 'I accept the Terms and Conditions',
+            minlength: 50,
+            required: true,
+            error: 'Please confirm you have accepted the Terms and Conditions.' }">
+        </div>
 
     </fieldset>
 

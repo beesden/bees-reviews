@@ -1,0 +1,10 @@
+<div class="rating-select">
+
+    <span class="rating-select__value"
+            ng-mouseover="mouseOn(rating)"
+            ng-mouseout="mouseOut()"
+            ng-click="select(rating)"
+            ng-repeat="rating in [1,5] | makeRange"
+            ng-class="{ 'rating-select__value--highlight': rating <= currentRating }"></span>
+
+</div>

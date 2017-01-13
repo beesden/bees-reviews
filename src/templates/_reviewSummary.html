@@ -1,6 +1,6 @@
 <div class="review-summary" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
 
-    <progress class="review-summary__rating" max="{{ summary.max }}" value="{{ summary.rating }}"></progress>
+    <rating ng-model="summary.rating" max="summary.max"></rating>
 
     <div class="review-summary__meta">
         Average rating:

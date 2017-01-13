@@ -1,0 +1,8 @@
+.rating-select {
+
+  &__value {
+    & { background-image: url('star-off.svg'); background-size: contain; display: inline-block; width: 1.5rem; height: 1.5rem; }
+    &--highlight { background-image: url('star-on.svg'); }
+  }
+
+}

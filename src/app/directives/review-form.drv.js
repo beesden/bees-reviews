@@ -17,13 +17,6 @@
 
 			link: function(scope) {
 
-				scope.form = {
-					title: 'This is a test review',
-					author: "Test User",
-					comment: "This summer was one of MYSH U's best as visiting students from universities across the country collaborated on an outdoor, contemporary rendition of Shakespeareӳ A Midsummer Nightӳ Dream. Poetry readings in garden settings, lectures at the museum, film screenings, and madrigal style dining are just a few of the summerӳ highlights.",
-					email: "test@test.com"
-				};
-
 				scope.submit = function(form, review) {
 					return reviewDataService.submitProductReview($route.current.params.product, form, review).then(function(response) {
 						delete scope.error;
