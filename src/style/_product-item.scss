@@ -5,8 +5,8 @@
   &__secondary { display: block; font-size: 0.9rem; color: #999; margin: 0 0 0.5rem; }
 
   &__image {
-    & { display: block; height: 160px; line-height: 160px; margin: 0 0 12px; text-align: center; }
-    img { vertical-align: bottom; max-height: 100%; max-width: 100%; }
+    & { background: #fafafa; display: block; height: 160px; line-height: 160px; margin: 0 0 1rem; text-align: center; }
+    img { vertical-align: middle; max-height: 100%; max-width: 100%; }
   }
 
 }

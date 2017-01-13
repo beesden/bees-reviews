@@ -5,8 +5,9 @@
     <ol class="review-graph__items">
 
         <li class="review-graph__item" ng-repeat="value in [1, 5] | makeRange | orderBy: '-'">
-            <span class="review-graph__label" ng-bind="'(' + (ratings[value] || 0) + ')'"></span>
+            <span class="review-graph__label" ng-bind="value + ' star'"></span>
             <progress class="review-graph__bar" max="{{ total }}" value="{{ ratings[value] }}"></progress>
+            <span class="review-graph__label" ng-bind="'(' + (ratings[value] || 0) + ')'"></span>
         </li>
 
     </ol>
