@@ -44,7 +44,7 @@ gulp.task('bower', function(cb) {
 
 	return exec(cmd, function(err, stdout, stderr) {
 		if (stderr) {
-			catchError(error);
+			catchError(stderr);
 		}
 		cb(err);
 	});
