@@ -2,7 +2,11 @@
 
   & { @include section(); }
 
-  &__message { font-weight: 700; }
-  &__preview { padding: 1rem; background: #f0f0f0; }
+  &__message {
+    & { color: #555; font-weight: 700; }
+    &--error { color: #900 }
+    &--success { color: #090 }
+  }
+  &__preview { padding: 1rem; background: #f0f0f0; margin: 0 0 1rem; }
 
 }

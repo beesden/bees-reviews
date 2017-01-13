@@ -1,13 +1,17 @@
-<form class="form review-form" name="reviewForm" ng-submit="submit(form)" novalidate>
+<form class="form review-form" name="reviewForm" ng-submit="submit(form, !review)" novalidate>
 
-    <fieldset ng-hide="review">
+    <p class="review-form__message" ng-if="review">Please confirm you are happy with this review. Once submitted, your review should be published within {{ review.delay }} hours.</p>
+    <p class="review-form__message review-form__message--success" ng-if="success">Your review was successfully posted. Your review should be published within {{ review.delay }} hours.</p>
+    <p class="review-form__message review-form__message--error"ng-if="error">There was an error with posting your review. Please check and try again.</p>
+
+    <fieldset ng-hide="success || review">
         <legend>Write a review</legend>
 
         <label class="form__label" for="author">Name *</label>
         <input class="form__input" type="text" name="author" id="author" ng-model="form.author" placeholder="Enter your name" minlength="3" required>
         <p class="form__message" ng-show="reviewForm.author.$invalid && reviewForm.author.$touched">A display name is required (at least 3 characters long).</p>
 
-        <label class="form__label" for="author">Email *</label>
+        <label class="form__label" for="email">Email *</label>
         <input class="form__input" type="email" name="email" id="email" ng-model="form.email" placeholder="Enter your email address" minlength="3" required>
         <p class="form__message" ng-show="reviewForm.email.$invalid && reviewForm.email.$touched">Enter a valid email.</p>
 
@@ -20,20 +24,16 @@
         <p class="form__message" ng-show="reviewForm.comment.$invalid && reviewForm.comment.$touched">Please enter a valid comment (minimum 50 characters).</p>
 
         <input name="terms" id="terms" ng-model="param.terms" type="checkbox" required>
-        <label for="terms"> I accept the <a href="/content/terms-and-conditions">Terms and Conditions</a> * </label>
+        <label for="terms"> I accept the <a href="/content/terms-and-conditions">Terms and Conditions</a> *</label>
         <p class="form__message" ng-show="reviewForm.terms.$invalid && reviewForm.terms.$dirty">Please confirm you have accepted the Terms and Conditions.</p>
 
     </fieldset>
 
     <div ng-show="review">
-
-        <button class="button" type="button" ng-click="review = !review">&lsaquo; Edit review</button>
-
-        <p class="review-form__message">Please confirm you are happy with this review. Once submitted, your review should be published within {{ review.delay }} hours.</p>
-
         <div class="review-form__preview" app-review-item="review"></div>
     </div>
 
-    <button class="button button--primary" type="submit" name="confirm" ng-disabled="reviewForm.$invalid" ng-value="{{ !!review }}" ng-bind="(review ? 'Submit' : 'Preview') + ' review'"></button>
+    <button class="button" type="button" ng-click="$parent.review = !review" ng-if="review">&lsaquo; Edit review</button>
+    <button class="button button--primary" ng-if="!success" type="submit" ng-disabled="reviewForm.$invalid" ng-bind="(review ? 'Submit' : 'Preview') + ' review'"></button>
 
 </form>

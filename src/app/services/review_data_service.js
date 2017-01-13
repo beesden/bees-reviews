@@ -79,19 +79,21 @@
 		 *
 		 * @param {string} productId Product to submit a review for
 		 * @param {object} reviewForm Form to convert into query string parameters
-		 * @param {boolean} confirm True for committing changes, false for previewing response
+		 * @param {boolean} review True if the submission should be reviewed first
 		 * @returns {$http}
 		 */
-		this.submitProductReview = function(productId, reviewForm) {
+		this.submitProductReview = function(productId, reviewForm, review) {
+			console.log(reviewForm)
 			var params = {
-				action: reviewForm.confirm ? 'submit' : 'preview',
+				action: review ? 'preview' : 'submit',
 				author: reviewForm.author,
 				productId: productId,
 				rating: reviewForm.rating || 3,
 				reviewText: reviewForm.comment,
 				title: reviewForm.title,
-				userId: reviewForm.email,
-				usernickname: reviewForm.author
+				userEmail: reviewForm.email,
+				userId: reviewForm.author,
+				userNickname: reviewForm.author.replace(/ +/g, '') + Date.now()
 			};
 			// Post response
 			return bvService.request('submitreview', params, 'POST');
