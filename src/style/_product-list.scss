@@ -7,6 +7,12 @@
   &__items {
     & { display: grid; grid-gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); list-style: none; padding: 1rem 0 0; }
     & > li { flex: 160px 0 0; }
+
+    // Cheap workaround for browsers that don't support css grid yet
+    @supports(not(display:grid )) {
+      & { overflow: hidden; }
+      > li { float: left; width: 25%; padding: 0 2%; min-width: 160px; height: 350px; }
+    }
   }
 
   &__footer { border-bottom: 1px solid #ddd; }
