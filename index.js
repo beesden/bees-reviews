@@ -1,11 +1,9 @@
 var express = require('express');
 var path = require('path');
-var args = require('command-line-args');
 
 // Start server
-{
     var app = express();
-	var port = args({name:'port', defaultValue: 80}).port;
+	var port = process.env.PORT || 80;
 
     app.use(express.static(__dirname + '/dist'));
 
@@ -20,4 +18,3 @@ var args = require('command-line-args');
     app.listen(port, function() {
         console.log('Example app listening on port ' + port + '!');
     });
-}
