@@ -18,7 +18,7 @@
 	 *
 	 * @description - Various service factory which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('bvService', (loadingService, messageService, $http, $sce) => {
+	ng.module('app').service('bvService', function(loadingService, messageService, $http, $sce) {
 
 		/**
 		 * Lookup data from BazaarVoice

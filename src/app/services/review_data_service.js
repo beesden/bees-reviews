@@ -8,7 +8,7 @@
 	 *
 	 * @description - Various services which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('reviewDataService', bvService => {
+	ng.module('app').service('reviewDataService', function(bvService) => {
 
 		/**
 		 * @ngdoc method

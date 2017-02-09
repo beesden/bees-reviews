@@ -8,7 +8,7 @@
 	 *
 	 * @description - Various services which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('messageService', $rootScope => {
+	ng.module('app').service('messageService', function($rootScope) {
 
 		const _self = this;
 		const messageQueue = [];

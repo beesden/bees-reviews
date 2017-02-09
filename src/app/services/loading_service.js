@@ -8,7 +8,7 @@
 	 *
 	 * @description - Various services which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('loadingService', () => {
+	ng.module('app').service('loadingService', function() {
 
 		let _self = this;
 
