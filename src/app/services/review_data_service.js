@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+(ng => {
 
 	/**
 	 * @ngdoc service
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Various services which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('reviewDataService', function(bvService) {
+	ng.module('app').service('reviewDataService', bvService => {
 
 		/**
 		 * @ngdoc method
@@ -18,8 +18,8 @@
 		 *
 		 * @returns {$http}
 		 */
-		this.getCategoryList = function(callback) {
-			var params = {
+		this.getCategoryList = callback => {
+			let params = {
 				filter: "IsActive:eq:true",
 				limit: 100
 			};
@@ -35,8 +35,8 @@
 		 * @param {object} params List of query string parameters
 		 * @returns {$http}
 		 */
-		this.getProductListings = function(params) {
-			var query = bvService.getPaginationParams(params, 12);
+		this.getProductListings = params => {
+			let query = bvService.getPaginationParams(params, 12);
 			// Add required parameters
 			query.filter = ['TotalReviewCount:gte:1'];
 			query.include = 'Categories';
@@ -59,10 +59,10 @@
 		 * @param {boolean} includeReviews Include fetching of review statistics in the request
 		 * @returns {$http}
 		 */
-		this.getProduct = function(params, includeReviews) {
-			var query = bvService.getPaginationParams(params);
+		this.getProduct = (params, includeReviews) => {
+			let query = bvService.getPaginationParams(params);
 			// Add required parameters
-			query.filter = 'ProductId:' + params.product;
+			query.filter = `ProductId:${params.product}`;
 			query.include = 'Products';
 			if (includeReviews) {
 				query.stats = 'Reviews';
@@ -82,8 +82,8 @@
 		 * @param {boolean} review True if the submission should be reviewed first
 		 * @returns {$http}
 		 */
-		this.submitProductReview = function(productId, reviewForm, review) {
-			var params = {
+		this.submitProductReview = (productId, reviewForm, review) => {
+			let params = {
 				action: review ? 'preview' : 'submit',
 				author: reviewForm.author,
 				productId: productId,

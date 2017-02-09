@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+(ng => {
 
 	/**
 	 * @ngdoc directive
@@ -8,18 +8,14 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('appProductItem', function() {
+	ng.module('app').directive('appProductItem', () => ({
 
-		return {
+		restrict: 'A',
+		scope: {
+			'product': '=appProductItem'
+		},
+		templateUrl: '/templates/_productItem.html'
 
-			restrict: 'A',
-			scope: {
-				'product': '=appProductItem'
-			},
-			templateUrl: '/templates/_productItem.html'
-
-		}
-
-	});
+	}));
 
 })(angular);

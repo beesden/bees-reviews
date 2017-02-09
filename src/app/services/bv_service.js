@@ -1,7 +1,16 @@
 /* global angular */
 
-(function(ng) {
+(ng => {
 
+	const config = {
+		bv: {
+			params: {
+				passkey: '2cpdrhohmgmwfz8vqyo48f52g',
+				apiversion: 5.4
+			},
+			url: '//stg.api.bazaarvoice.com'
+		}
+	};
 
 	/**
 	 * @ngdoc service
@@ -9,17 +18,7 @@
 	 *
 	 * @description - Various service factory which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('bvService', function(loadingService, messageService, $http, $sce) {
-
-		var config = {
-			bv: {
-				params: {
-					passkey: '2cpdrhohmgmwfz8vqyo48f52g',
-					apiversion: 5.4
-				},
-				url: '//stg.api.bazaarvoice.com'
-			}
-		};
+	ng.module('app').service('bvService', (loadingService, messageService, $http, $sce) => {
 
 		/**
 		 * Lookup data from BazaarVoice
@@ -28,24 +27,22 @@
 		 * @param params
 		 * @param method
 		 */
-		this.request = function(path, params, method) {
+		this.request = (path, params, method = 'JSONP') => {
 
 			// Build the default BV API url
-			var url = config.bv.url + '/data/' + path + '.json?';
+			let url = `${config.bv.url}/data/${path}.json?`;
 			params = ng.merge({}, params, config.bv.params);
 
 			loadingService.start();
 
 			// Return the function which can be extended with '.success() {}'
 			return $http({
-				method: method || 'JSONP',
+				method: method,
 				params: params,
 				url: $sce.trustAsResourceUrl(url)
-			}).then(function(response) {
-				return response.data;
-			}, function(response) {
+			}).then(response => response.data, response => {
 				messageService.add('error', response);
-			}).finally(function() {
+			}).finally(() => {
 				loadingService.finish();
 			});
 		};
@@ -57,10 +54,10 @@
 		 * @param limit
 		 * @returns {{offset: number, limit: (*|number)}}
 		 */
-		this.getPaginationParams = function(pageParams, limit) {
-			var params = {
+		this.getPaginationParams = (pageParams, limit = 10) => {
+			let params = {
 				offset: 0,
-				limit: limit || 10
+				limit: limit
 			};
 			// Page parameter
 			if (!isNaN(pageParams.page) && pageParams.page > 0) {

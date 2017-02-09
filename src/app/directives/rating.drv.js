@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+(ng => {
 
 	/**
 	 * @ngdoc directive
@@ -8,76 +8,70 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('rating', function() {
+	ng.module('app').directive('rating', () => ({
 
-		return {
+		require: 'ngModel',
+		restrict: 'E',
+		scope: {
+			editable: '=editable'
+		},
+		templateUrl: '/templates/_rating.html',
 
-			require: 'ngModel',
-			restrict: 'E',
-			scope: {
-				editable: '=editable'
-			},
-			templateUrl: '/templates/_rating.html',
+		link: (scope, element, attrs, ngModel) => {
 
-			link: function(scope, element, attrs, ngModel) {
+			let currentRating;
 
-				var currentRating;
+			/**
+			 * @ngdoc method
+			 * @name mouseOn
+			 * @methodOf app.rating
+			 * @description Update the display rating on hover
+			 *
+			 * @param value rating value
+			 */
+			scope.mouseOn = value => {
+				if (scope.editable) {
+					scope.currentRating = value;
+				}
+			};
 
-				/**
-				 * @ngdoc method
-				 * @name mouseOn
-				 * @methodOf app.rating
-				 * @description Update the display rating on hover
-				 *
-				 * @param value rating value
-				 */
-				scope.mouseOn = function(value) {
-					if (scope.editable) {
-						scope.currentRating = value;
-					}
-				};
+			/**
+			 * @ngdoc method
+			 * @name mouseOut
+			 * @methodOf app.rating
+			 * @description Reset display rating on hover out
+			 */
+			scope.mouseOut = () => {
+				if (scope.editable) {
+					scope.currentRating = currentRating;
+				}
+			};
 
-				/**
-				 * @ngdoc method
-				 * @name mouseOut
-				 * @methodOf app.rating
-				 * @description Reset display rating on hover out
-				 */
-				scope.mouseOut = function() {
-					if (scope.editable) {
-						scope.currentRating = currentRating;
-					}
-				};
-
-				/**
-				 * @ngdoc method
-				 * @name select
-				 * @methodOf app.rating
-				 * @description Select a specific rating to be displayed and returned
-				 *
-				 * @param value rating value
-				 */
-				scope.select = function(value) {
-					if (scope.editable) {
-						scope.currentRating = currentRating = value;
-						ngModel.$setViewValue(value);
-						ngModel.$setDirty(true);
-						ngModel.$setTouched(true);
-					}
-				};
-
-				ngModel.$formatters.push(function(value) {
+			/**
+			 * @ngdoc method
+			 * @name select
+			 * @methodOf app.rating
+			 * @description Select a specific rating to be displayed and returned
+			 *
+			 * @param value rating value
+			 */
+			scope.select = value => {
+				if (scope.editable) {
 					scope.currentRating = currentRating = value;
-				});
+					ngModel.$setViewValue(value);
+					ngModel.$setDirty(true);
+					ngModel.$setTouched(true);
+				}
+			};
 
-				ngModel.$validators.required = function(modelValue, viewValue) {
-					return !attrs.required || viewValue > 0;
-				};
+			ngModel.$formatters.push(value => {
+				scope.currentRating = currentRating = value;
+			});
 
-			}
+			ngModel.$validators.required = (modelValue, viewValue) => !attrs.required || viewValue > 0;
 
 		}
 
-	});
+	}));
 
 })(angular);

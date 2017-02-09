@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+(ng => {
 
 	/**
 	 * @ngdoc overview
@@ -9,7 +9,7 @@
 	 */
 	ng.module('app', [
 		'ngRoute'
-	]).config(function($locationProvider, $routeProvider) {
+	]).config(($locationProvider, $routeProvider) => {
 
 		$locationProvider.html5Mode(true);
 
@@ -17,9 +17,7 @@
 		// Product list
 			.when('/:category?', {
 				resolve: {
-					productList: function($route, reviewDataService) {
-						return reviewDataService.getProductListings($route.current.params);
-					}
+					productList: ($route, reviewDataService) => reviewDataService.getProductListings($route.current.params)
 				},
 				resolveAs: 'data',
 				templateUrl: '/templates/productList.html'
@@ -27,9 +25,7 @@
 			// Product details
 			.when('/:category/:product', {
 				resolve: {
-					product: function($route, reviewDataService) {
-						return reviewDataService.getProduct($route.current.params, true);
-					}
+					product: ($route, reviewDataService) => reviewDataService.getProduct($route.current.params, true)
 				},
 				resolveAs: 'data',
 				templateUrl: '/templates/productDetails.html'

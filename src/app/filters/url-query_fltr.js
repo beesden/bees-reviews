@@ -1,26 +1,22 @@
 /* global angular */
-(function(ng) {
+(ng => {
 
-    /**
-     * @ngdoc filter
-     * @name app:urlQuery
-     *
-     * @description - Create url query parameters on the current URL
-     */
-    ng.module('app').filter('urlQuery', function($httpParamSerializer, $location) {
+	/**
+	 * @ngdoc filter
+	 * @name app:urlQuery
+	 *
+	 * @description - Create url query parameters on the current URL
+	 */
+	ng.module('app').filter('urlQuery', ($httpParamSerializer, $location) => params => {
 
-        return function(params) {
+		let url = $location.path();
+		let serializedParams = $httpParamSerializer(params);
 
-            var url = $location.path();
-            var serializedParams = $httpParamSerializer(params);
+		if (serializedParams.length > 0) {
+			url += `?${serializedParams}`;
+		}
 
-            if (serializedParams.length > 0) {
-                url += '?' + serializedParams;
-            }
-
-            return url.indexOf('/') === 0 ? url.slice(1) : url;
-        }
-
-    });
+		return url.indexOf('/') === 0 ? url.slice(1) : url;
+	});
 
 })(angular);

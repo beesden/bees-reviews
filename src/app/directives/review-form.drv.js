@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+(ng =>{
 
 	/**
 	 * @ngdoc directive
@@ -8,36 +8,30 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('appReviewForm', function($route, reviewDataService) {
+	ng.module('app').directive('appReviewForm', ($route, reviewDataService) => ({
 
-		return {
+		restrict: 'A',
+		templateUrl: '/templates/_reviewForm.html',
 
-			restrict: 'A',
-			templateUrl: '/templates/_reviewForm.html',
+		link: scope => {
 
-			link: function(scope) {
+			scope.submit = (form, review) => reviewDataService.submitProductReview($route.current.params.product, form, review).then(response => {
+				delete scope.error;
+				delete scope.review;
 
-				scope.submit = function(form, review) {
-					return reviewDataService.submitProductReview($route.current.params.product, form, review).then(function(response) {
-						delete scope.error;
-						delete scope.review;
-
-						if (response.HasErrors) {
-							scope.error = true;
-						} else if (review) {
-							scope.review = response.Review;
-							scope.review.AuthorId = form.author;
-							scope.review.delay = response.TypicalHoursToPost;
-						} else {
-							scope.success = true;
-						}
-					});
-				};
-
-			}
+				if (response.HasErrors) {
+					scope.error = true;
+				} else if (review) {
+					scope.review = response.Review;
+					scope.review.AuthorId = form.author;
+					scope.review.delay = response.TypicalHoursToPost;
+				} else {
+					scope.success = true;
+				}
+			});
 
 		}
 
-	});
+	}));
 
 })(angular);

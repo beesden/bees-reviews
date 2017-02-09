@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+(ng => {
 
 	/**
 	 * @ngdoc directive
@@ -8,58 +8,54 @@
 	 *
 	 * @description - Display all the categories in the menu.
 	 */
-	ng.module('app').directive('appMainNav', function($route, reviewDataService) {
+	ng.module('app').directive('appMainNav', ($route, reviewDataService) => ({
 
-		return {
+		restrict: 'A',
+		templateUrl: '/templates/_menu.html',
 
-			restrict: 'A',
-			templateUrl: '/templates/_menu.html',
+		link: scope => {
 
-			link: function(scope) {
+			// Add the category 'hierarchy'
+			reviewDataService.getCategoryList().then(response => {
 
-				// Add the category 'hierarchy'
-				reviewDataService.getCategoryList().then(function(response) {
+				scope.categories = [];
+				let categoryMap = {};
 
-					scope.categories = [];
-					var categoryMap = {};
-
-					// Create map of categories
-					response.Results.forEach(function(category) {
-						categoryMap[category.Id] = ng.merge({}, category, {children: []});
-					});
-
-					// Add to hierarchy
-					response.Results.forEach(function(category) {
-						if (category.ParentId) {
-							categoryMap[category.ParentId].children.push(category);
-						} else {
-							scope.categories.push(categoryMap[category.Id]);
-						}
-					});
-
+				// Create map of categories
+				response.Results.forEach(category => {
+					categoryMap[category.Id] = ng.merge({}, category, {children: []});
 				});
 
-				/**
-				 * Select a category to view it's children
-				 *
-				 * @param $event
-				 * @param category
-				 */
-				scope.selectCategory = function($event, category) {
-					if (scope.currentCategory === category.Id) {
-						delete scope.currentCategory;
+				// Add to hierarchy
+				response.Results.forEach(category => {
+					if (category.ParentId) {
+						categoryMap[category.ParentId].children.push(category);
 					} else {
-						scope.currentCategory = category.Id;
+						scope.categories.push(categoryMap[category.Id]);
 					}
-					if (category.children.length) {
-						$event.preventDefault();
-					}
-				};
+				});
 
-			}
+			});
+
+			/**
+			 * Select a category to view it's children
+			 *
+			 * @param $event
+			 * @param category
+			 */
+			scope.selectCategory = ($event, category) => {
+				if (scope.currentCategory === category.Id) {
+					delete scope.currentCategory;
+				} else {
+					scope.currentCategory = category.Id;
+				}
+				if (category.children.length) {
+					$event.preventDefault();
+				}
+			};
 
 		}
 
-	});
+	}));
 
 })(angular);
