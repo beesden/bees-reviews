@@ -37,9 +37,7 @@
 
 			// Return the function which can be extended with '.success() {}'
 			return $http({
-				method: method,
-				params: params,
-				url: $sce.trustAsResourceUrl(url)
+				method, params, url: $sce.trustAsResourceUrl(url)
 			}).then(response => response.data, response => {
 				messageService.add('error', response);
 			}).finally(() => {
