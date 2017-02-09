@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+((ng) => {
 
 	/**
 	 * @ngdoc service
@@ -18,7 +18,7 @@
 		 *
 		 * @returns {$http}
 		 */
-		this.getCategoryList = function(callback) {
+		this.getCategoryList = callback =>{
 			var params = {
 				filter: "IsActive:eq:true",
 				limit: 100
@@ -35,7 +35,7 @@
 		 * @param {object} params List of query string parameters
 		 * @returns {$http}
 		 */
-		this.getProductListings = function(params) {
+		this.getProductListings = params =>{
 			var query = bvService.getPaginationParams(params, 12);
 			// Add required parameters
 			query.filter = ['TotalReviewCount:gte:1'];
@@ -59,10 +59,10 @@
 		 * @param {boolean} includeReviews Include fetching of review statistics in the request
 		 * @returns {$http}
 		 */
-		this.getProduct = function(params, includeReviews) {
+		this.getProduct = (params, includeReviews) =>{
 			var query = bvService.getPaginationParams(params);
 			// Add required parameters
-			query.filter = 'ProductId:' + params.product;
+			query.filter = `ProductId:${params.product}`;
 			query.include = 'Products';
 			if (includeReviews) {
 				query.stats = 'Reviews';
@@ -82,7 +82,7 @@
 		 * @param {boolean} review True if the submission should be reviewed first
 		 * @returns {$http}
 		 */
-		this.submitProductReview = function(productId, reviewForm, review) {
+		this.submitProductReview = (productId, reviewForm, review) =>{
 			var params = {
 				action: review ? 'preview' : 'submit',
 				author: reviewForm.author,

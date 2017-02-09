@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+((ng) => {
 
 
 	/**
@@ -28,10 +28,10 @@
 		 * @param params
 		 * @param method
 		 */
-		this.request = function(path, params, method) {
+		this.request = (path, params, method) => {
 
 			// Build the default BV API url
-			var url = config.bv.url + '/data/' + path + '.json?';
+			var url = `${config.bv.url}/data/${path}.json?`;
 			params = ng.merge({}, params, config.bv.params);
 
 			loadingService.start();
@@ -41,11 +41,9 @@
 				method: method || 'JSONP',
 				params: params,
 				url: $sce.trustAsResourceUrl(url)
-			}).then(function(response) {
-				return response.data;
-			}, function(response) {
+			}).then(response => response.data, response => {
 				messageService.add('error', response);
-			}).finally(function() {
+			}).finally(() => {
 				loadingService.finish();
 			});
 		};
@@ -57,7 +55,7 @@
 		 * @param limit
 		 * @returns {{offset: number, limit: (*|number)}}
 		 */
-		this.getPaginationParams = function(pageParams, limit) {
+		this.getPaginationParams = (pageParams, limit) => {
 			var params = {
 				offset: 0,
 				limit: limit || 10

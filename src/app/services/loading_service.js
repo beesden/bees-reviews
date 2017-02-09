@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+((ng) => {
 
     /**
      * @ngdoc service
@@ -22,7 +22,7 @@
          * @methodOf app.reviewDataService
          * @description Add a counter to the loader count
          */
-        _self.start = function() {
+        _self.start = () =>{
             loadCount++;
         };
 
@@ -32,7 +32,7 @@
          * @methodOf app.reviewDataService
          * @description a counter from the loading service
          */
-        _self.finish = function() {
+        _self.finish = () =>{
             loadCount = Math.max(0, loadCount - 1);
             _self.loading = loadCount > 0;
         };

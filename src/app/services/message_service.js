@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+((ng) => {
 
     /**
      * @ngdoc service
@@ -18,7 +18,7 @@
         /**
          * Clear all messages from the queue
          */
-        _self.clear = function() {
+        _self.clear = () =>{
             _self.messages.length = 0;
         };
 
@@ -28,7 +28,7 @@
          * @param level
          * @param message
          */
-        _self.add = function(level, message) {
+        _self.add = (level, message) =>{
             _self.messages.unshift({
                 level: level || 'info',
                 text: message
@@ -41,12 +41,12 @@
          * @param level
          * @param message
          */
-        _self.queue = function(level, message) {
+        _self.queue = (level, message) =>{
             messageQueue.push([level, message]);
         };
 
         // Publish messages on route change
-        $rootScope.$on('$routeChangeSuccess', function() {
+        $rootScope.$on('$routeChangeSuccess', () =>{
             _self.clear();
             for (var i = 0; i < messageQueue.length; i++) {
                 _self.add(messageQueue[i]);

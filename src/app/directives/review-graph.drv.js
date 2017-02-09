@@ -1,6 +1,6 @@
 /* global angular */
 
-(function(ng) {
+(ng =>{
 
 	/**
 	 * @ngdoc directive
@@ -8,35 +8,31 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('appReviewGraph', function() {
+	ng.module('app').directive('appReviewGraph', () => ({
 
-		return {
+		restrict: 'A',
+		scope: {
+			'appRatings': '=appReviewGraph'
+		},
+		templateUrl: '/templates/_reviewGraph.html',
 
-			restrict: 'A',
-			scope: {
-				'appRatings': '=appReviewGraph'
-			},
-			templateUrl: '/templates/_reviewGraph.html',
+		link: scope => {
+			scope.$watch('appRatings', ratings => {
 
-			link: function(scope) {
-				scope.$watch('appRatings', function(ratings) {
+				if (!ratings) {
+					return;
+				}
 
-					if (!ratings) {
-						return;
-					}
+				scope.total = ratings.TotalReviewCount;
+				scope.ratings = {};
 
-					scope.total = ratings.TotalReviewCount;
-					scope.ratings = {};
-
-					ratings.RatingDistribution.forEach(function(ratings) {
-						scope.ratings[ratings.RatingValue] = ratings.Count;
-					})
-
+				ratings.RatingDistribution.forEach(ratings => {
+					scope.ratings[ratings.RatingValue] = ratings.Count;
 				})
-			}
 
+			})
 		}
 
-	});
+	}));
 
 })(angular);
