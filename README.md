@@ -14,6 +14,11 @@ Up and running on https://bees-reviews.herokuapp.com/
 * Run local app `node index.js --port 3005`
 * Open `localhost:3005` in your browser
 
+## Technical
+Core languages used:
+* Angular 1.6
+* ES2015
+
 ## Links
 
 https://developer.bazaarvoice.com/docs/read/ for information about using BazaarVoice API.
