@@ -108,6 +108,7 @@ gulp.task('watch', () => {
 	gulp.watch(config.dirs.images, config.watch, ['images']);
 	gulp.watch(config.dirs.script, config.watch, ['scripts']);
 	gulp.watch(config.dirs.style, config.watch, ['styles']);
+	gulp.watch(config.dirs.template, config.watch, ['templates']);
 });
 
 
