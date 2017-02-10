@@ -1,5 +1,5 @@
 /* global angular */
-(ng => {
+{
 
 	/**
 	 * @ngdoc filter
@@ -7,7 +7,7 @@
 	 *
 	 * @description - Create url query parameters on the current URL
 	 */
-	ng.module('app').filter('urlQuery', ($httpParamSerializer, $location) => params => {
+	angular.module('app').filter('urlQuery', ($httpParamSerializer, $location) => params => {
 
 		let url = $location.path();
 		let serializedParams = $httpParamSerializer(params);
@@ -19,4 +19,4 @@
 		return url.indexOf('/') === 0 ? url.slice(1) : url;
 	});
 
-})(angular);
+}

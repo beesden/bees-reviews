@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc directive
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Display all the categories in the menu.
 	 */
-	ng.module('app').directive('appMainNav', ($route, reviewDataService) => ({
+	angular.module('app').directive('appMainNav', ($route, reviewDataService) => ({
 
 		restrict: 'A',
 		templateUrl: '/templates/_menu.html',
@@ -23,7 +23,7 @@
 
 				// Create map of categories
 				response.Results.forEach(category => {
-					categoryMap[category.Id] = ng.merge({}, category, {children: []});
+					categoryMap[category.Id] = angular.merge({}, category, {children: []});
 				});
 
 				// Add to hierarchy
@@ -58,4 +58,4 @@
 
 	}));
 
-})(angular);
+}

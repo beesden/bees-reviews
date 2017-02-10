@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc service
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Various services which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('loadingService', function() {
+	angular.module('app').service('loadingService', function() {
 
 		let _self = this;
 
@@ -39,4 +39,4 @@
 
 	});
 
-})(angular);
+}

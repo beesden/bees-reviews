@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc directive
@@ -8,14 +8,14 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('rating', () => ({
+	angular.module('app').directive('rating', () => ({
 
 		require: 'ngModel',
 		restrict: 'E',
 		scope: {
 			editable: '=editable'
 		},
-		templateUrl: '/templates/_rating.html',
+		templateUrl: '/templates/_ratiangular.html',
 
 		link: (scope, element, attrs, ngModel) => {
 
@@ -74,4 +74,4 @@
 
 	}));
 
-})(angular);
+}

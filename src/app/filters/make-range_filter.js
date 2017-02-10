@@ -1,5 +1,5 @@
 /* global angular */
-(ng => {
+{
 
 	/**
 	 * @ngdoc filter
@@ -7,7 +7,7 @@
 	 *
 	 * @description - Generate a list of numbers between a range (e.g. 1-5)
 	 */
-	ng.module('app').filter('makeRange', () => input => {
+	angular.module('app').filter('makeRange', () => input => {
 		let lowBound, highBound;
 		switch (input.length) {
 			case 1:
@@ -28,4 +28,4 @@
 		return result;
 	});
 
-})(angular);
+}

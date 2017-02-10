@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc directive
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('inputWrap', () => ({
+	angular.module('app').directive('inputWrap', () => ({
 
 		require: ['?^form', 'ngModel'],
 		restrict: 'A',
@@ -33,4 +33,4 @@
 
 	}));
 
-})(angular);
+}

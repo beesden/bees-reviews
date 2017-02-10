@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc service
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Various services which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('reviewDataService', function(bvService) {
+	angular.module('app').service('reviewDataService', function(bvService) {
 
 		/**
 		 * @ngdoc method
@@ -100,4 +100,4 @@
 
 	});
 
-})(angular);
+}

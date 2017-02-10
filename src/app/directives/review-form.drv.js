@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng =>{
+{
 
 	/**
 	 * @ngdoc directive
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('appReviewForm', ($route, reviewDataService) => ({
+	angular.module('app').directive('appReviewForm', ($route, reviewDataService) => ({
 
 		restrict: 'A',
 		templateUrl: '/templates/_reviewForm.html',
@@ -34,4 +34,4 @@
 
 	}));
 
-})(angular);
+}

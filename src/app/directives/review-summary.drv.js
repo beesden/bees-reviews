@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc directive
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Build a list of pagination links
 	 */
-	ng.module('app').directive('appReviewSummary', () => ({
+	angular.module('app').directive('appReviewSummary', () => ({
 
 		restrict: 'A',
 		scope: {
@@ -18,4 +18,4 @@
 
 	}));
 
-})(angular);
+}

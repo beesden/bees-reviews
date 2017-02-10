@@ -1,13 +1,13 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc overview
 	 * @name app
 	 * @description Framework for fetching ratings / reviews information.
 	 */
-	ng.module('app', [
+	angular.module('app', [
 		'ngRoute'
 	]).config(($locationProvider, $routeProvider) => {
 
@@ -34,4 +34,4 @@
 
 	});
 
-})(angular);
+}

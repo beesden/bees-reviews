@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	const config = {
 		bv: {
@@ -18,7 +18,7 @@
 	 *
 	 * @description - Various service factory which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('bvService', function(loadingService, messageService, $http, $sce) {
+	angular.module('app').service('bvService', function(loadingService, messageService, $http, $sce) {
 
 		/**
 		 * Lookup data from BazaarVoice
@@ -31,7 +31,7 @@
 
 			// Build the default BV API url
 			let url = `${config.bv.url}/data/${path}.json?`;
-			params = ng.merge({}, params, config.bv.params);
+			params = angular.merge({}, params, config.bv.params);
 
 			loadingService.start();
 
@@ -66,4 +66,4 @@
 
 	});
 
-})(angular);
+}

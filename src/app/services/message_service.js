@@ -1,6 +1,6 @@
 /* global angular */
 
-(ng => {
+{
 
 	/**
 	 * @ngdoc service
@@ -8,7 +8,7 @@
 	 *
 	 * @description - Various services which communicate with the BazaarVoice API
 	 */
-	ng.module('app').service('messageService', function($rootScope) {
+	angular.module('app').service('messageService', function($rootScope) {
 
 		const _self = this;
 		const messageQueue = [];
@@ -54,4 +54,4 @@
 
 	});
 
-})(angular);
+}
